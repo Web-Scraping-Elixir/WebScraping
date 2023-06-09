@@ -1,0 +1,71 @@
+defmodule HTMLGenerator do
+  def generate_html(content) do
+    template = """
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>Resultados da busca</title>
+    </head>
+    <body>
+      <%= render_content(content) %>
+    </body>
+    </html>
+    """
+
+    html = EEx.eval_string(template, content: content)
+
+    File.write("pagina.html", html)
+  end
+
+  def render_content(content) do
+    Enum.map(content, fn {title, href, time, description} ->
+      """
+      <div>
+        <h2>Title: #{title}</h2>
+        <p>Inicio: #{description}</p>
+        <p>Link: #{href}</p>
+        <p>Tempo da publicacao: #{time}</p>
+      </div>
+      """
+    end) |> Enum.join()
+  end
+end
+
+defmodule Webscraping do
+  def get_g1 do
+    # ... código omitido ...
+
+    content = Enum.map(content, fn {title, href, time, description} ->
+      {title, "https:#{href}", time, description}
+    end)
+
+    HTMLGenerator.generate_html(content)
+  end
+
+  def get_cnn_brasil do
+    # ... código omitido ...
+
+    content = Enum.map(content, fn {title, href, date} ->
+      {title, href, date, ""}
+    end)
+
+    HTMLGenerator.generate_html(content)
+  end
+
+  def get_bloom do
+    # ... código omitido ...
+
+    content = Enum.map(content, fn {title, autor, href, date, article} ->
+      {title, href, date, ""}
+    end)
+
+    HTMLGenerator.generate_html(content)
+  end
+end
+
+# Chame a função correspondente para gerar a página HTML
+Webscraping.get_g1()
+# ou
+Webscraping.get_cnn_brasil()
+# ou
+Webscraping.get_bloom()
