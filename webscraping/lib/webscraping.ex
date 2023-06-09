@@ -4,15 +4,33 @@ defmodule Webscraping do
     IO.puts("Digite sua palavra de busca: ")
     busca = IO.gets("") |> String.trim()
 
-    task_g1 = Task.async(fn -> get_g1(busca) end)
-    task_cnn_brasil = Task.async(fn -> get_cnn_brasil(busca) end)
-    task_bloom = Task.async(fn -> get_bloom(busca) end)
+    {search_term, search_term_bloom} = count_words(busca)
+
+    task_g1 = Task.async(fn -> get_g1(search_term) end)
+    task_cnn_brasil = Task.async(fn -> get_cnn_brasil(search_term) end)
+    task_bloom = Task.async(fn -> get_bloom(search_term_bloom) end)
 
     # HTMLGenerator.generate_html()
 
     Task.await(task_g1)
     Task.await(task_cnn_brasil)
     Task.await(task_bloom)
+  end
+
+  def count_words(input) do
+    words = input |> String.split(~r/\s+/)
+    word_count = words |> length()
+    if word_count > 1 do
+      replace(input)
+    else
+      {words, words}
+    end
+  end
+
+  def replace(input) do
+    cnn_g1 = String.replace(input, " ", "+")
+    bloom = String.replace(input, " ", "%20")
+    {cnn_g1, bloom}
   end
 
   def get_g1(busca) do
@@ -52,6 +70,7 @@ defmodule Webscraping do
           end)
 
         Enum.each(content, fn {title, href, time, description} ->
+          IO.puts("                         Fonte: G1                            ")
           IO.puts("Title: #{title}")
           IO.puts("Inicio: #{description}")
           IO.puts("Link: https:#{href}")
@@ -93,6 +112,7 @@ defmodule Webscraping do
           end)
 
         Enum.each(content, fn {title, href, date} ->
+          IO.puts("                         Fonte: CNN Brasil                            ")
           IO.puts("Title: #{title}")
           IO.puts("Link: #{href}")
           IO.puts("Post info: #{date}")
@@ -144,6 +164,7 @@ defmodule Webscraping do
           end)
 
         Enum.each(content, fn {title, autor, href, date, article} ->
+          IO.puts("                         Fonte: Bloom                            ")
           IO.puts("Title: #{title}")
           IO.puts("Autor: #{autor}")
           IO.puts("Link: #{href}")
@@ -158,6 +179,7 @@ defmodule Webscraping do
     end
   end
 end
+
 
 # defmodule HTMLGenerator do
 #   def generate_html(content) do
