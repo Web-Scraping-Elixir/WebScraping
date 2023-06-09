@@ -4,6 +4,10 @@
 
 ## Installation
 
+mix deps.get
+iex -S mix
+Webscraping.main
+
 If [available in Hex](https://hex.pm/docs/publish), the package can be installed
 by adding `webscraping` to your list of dependencies in `mix.exs`:
 
