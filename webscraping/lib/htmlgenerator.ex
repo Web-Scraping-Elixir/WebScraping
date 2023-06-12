@@ -23,10 +23,10 @@ defmodule HTMLGenerator do
    defp generate_list_items(content) do
       Enum.map(content, fn {title, start, link, publication_time} ->
          "<li>
-         <strong>Title:</strong> #{title}<br>
-         <strong>Start:</strong> #{start}<br>
+         <strong>Título:</strong> #{title}<br>
+         <strong>Início:</strong> #{start}<br>
          <strong>Link:</strong> <a href=\"#{link}\">#{link}</a><br>
-         <strong>Publication Time:</strong> #{publication_time}
+         <strong>Tempo da publicacao:</strong> #{publication_time}
          </li>"
       end)
       |> Enum.join("\n")
