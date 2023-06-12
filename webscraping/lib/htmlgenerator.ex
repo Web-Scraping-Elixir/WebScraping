@@ -31,14 +31,4 @@ defmodule HTMLGenerator do
       end)
       |> Enum.join("\n")
    end
-   end
-
-   # Example content variable
-   content = [
-   {"Article 1", "2023-06-10", "https://example.com/article1", "2 hours ago"},
-   {"Article 2", "2023-06-11", "https://example.com/article2", "1 day ago"},
-   {"Article 3", "2023-06-12", "https://example.com/article3", "1 hour ago"}
-   ]
-
-html = HTMLGenerator.generate_html(content)
-IO.puts(html)
+end
