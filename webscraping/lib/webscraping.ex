@@ -8,12 +8,15 @@ defmodule Webscraping do
       task_cnn_brasil = Task.async(fn -> get_cnn_brasil(busca) end)
       task_bloom = Task.async(fn -> get_bloom(busca) end)
 
-      # HTMLGenerator.generate_html()
-
       # Aguarda as tarefas serem concluídas.
-      Task.await(task_g1)
-      Task.await(task_cnn_brasil)
-      Task.await(task_bloom)
+      g1_news = Task.await(task_g1)
+      cnn_brasil_news = Task.await(task_cnn_brasil)
+      bloom_news = Task.await(task_bloom)
+
+      news_results = g1_news ++ cnn_brasil_news ++ bloom_news # Concatena os resultados de todas as fontes de notícias.
+
+      # HTMLGenerator.generate_html()
+      HTMLGenerator.main(news_results)
    end
 
    def get_g1(busca) do
