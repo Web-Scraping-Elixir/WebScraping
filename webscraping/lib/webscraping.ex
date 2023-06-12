@@ -47,7 +47,38 @@ defmodule Webscraping do
          end)
       end
    end
-   
+
+   def get_cnn_brasil(busca) do
+      IO.puts("Iniciando busca CNN Brasil")
+
+      case HTTPoison.get("https://www.cnnbrasil.com.br/?s=#{busca}&orderby=date&order=desc") do
+         {:ok, %HTTPoison.Response{body: body}} ->
+         {:ok, doc} = :html_parser.parse(body)
+
+         content =
+            :html_parser.select(doc, "li.home__list__item") |> Enum.map(fn item ->
+            title =
+                  :html_parser.select(item, "h3.news-item-header__title.market__new__title") |> List.first() |> :html_parser.text()
+
+            href =
+                  :html_parser.select(item, "a.home__list__tag") |> List.first() |> :html_parser.attribute("href")
+
+            date =
+                  :html_parser.select(item, "span.home__title__date") |> List.first() |> :html_parser.text()
+
+            {title, href, date}
+            end)
+
+         Enum.each(content, fn {title, href, date} ->
+            IO.puts("Title: #{title}")
+            IO.puts("Link: #{href}")
+            IO.puts("Post info: #{date}")
+            IO.puts("")
+            IO.puts("------------------------------------------------------------------------------------------------------------------------")
+         end)
+      end
+   end
+
 end
 
 Webscraping.main()
