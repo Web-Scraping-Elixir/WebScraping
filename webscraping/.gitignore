@@ -28,3 +28,4 @@ webscraping-*.tar
 dets_simple_storage
 
 /output
+/webscraping/output
