@@ -26,3 +26,5 @@ webscraping-*.tar
 /tmp/
 
 dets_simple_storage
+
+/output
