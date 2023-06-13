@@ -10,10 +10,12 @@ defmodule Webscraping do
     busca = IO.gets("") |> String.trim()
 
     clear_output_file()
+    {search_term, search_term_bloom} = count_words(busca)
 
-    task_g1 = Task.async(fn -> get_g1(busca) end)
-    task_cnn_brasil = Task.async(fn -> get_cnn_brasil(busca) end)
-    task_bloom = Task.async(fn -> get_bloom(busca) end)
+
+    task_g1 = Task.async(fn -> get_g1(search_term) end)
+    task_cnn_brasil = Task.async(fn -> get_cnn_brasil(search_term) end)
+    task_bloom = Task.async(fn -> get_bloom(search_term_bloom) end)
 
     # HTMLGenerator.generate_html()
 
@@ -21,6 +23,23 @@ defmodule Webscraping do
     Task.await(task_cnn_brasil)
     Task.await(task_bloom)
   end
+
+  def count_words(input) do
+    words = input |> String.split(~r/\s+/)
+    word_count = words |> length()
+    if word_count > 1 do
+      replace(input)
+    else
+      {words, words}
+    end
+  end
+
+  def replace(input) do
+    cnn_g1 = String.replace(input, " ", "+")
+    bloom = String.replace(input, " ", "%20")
+    {cnn_g1, bloom}
+  end
+
 
   def get_g1(busca) do
     IO.puts("Iniciando busca G1")
