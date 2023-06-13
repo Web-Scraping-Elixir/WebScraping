@@ -53,8 +53,10 @@ Digite sua palavra de busca: insertYourTopicHere
 - `Floki.find` - Floki.find(html, selector) - Returns the first element in the html that matches the given selector.
 - `Floki.text` - Floki.text(html) - Returns the text content of the given html.
 - `Floki.attribute` - Floki.attribute(html, attribute) - Returns the value of the given attribute in the html.
+- `Crawly.fetch` - Crawly.fetch(url) - Fetch ther request for a specified URL.
 
 ## External Libraries:
+- [Crawly](https://github.com/elixir-crawly/crawly) - Crawly is an application framework for crawling web pages and extracting structured data which can be used for a wide range of useful applications, like data mining, information processing or historical archival.
 - [HTTPoison](https://hexdocs.pm/httpoison/HTTPoison.html) - HTTPoison is an HTTP client for Elixir, which supports the HTTP protocol for requests and responses.
 - [Floki](https://github.com/philss/floki) - Floki is a simple HTML parser that enables search for nodes using CSS selectors.
 
@@ -62,4 +64,3 @@ Digite sua palavra de busca: insertYourTopicHere
 - [Floki Alternatives](https://elixir.libhunt.com/floki-alternatives):  
 	**[Meeseeks](https://github.com/mischov/meeseeks)** - Meeseeks is a library for scraping and parsing web pages which is an alternative to Floki.
 - [HTTPoison Alternatives](https://elixir.libhunt.com/httpoison-alternatives):  
-	**[Crawly](https://github.com/elixir-crawly/crawly)** - Crawly is an application framework for crawling web pages and extracting structured data which can be used for a wide range of useful applications, like data mining, information processing or historical archival.
