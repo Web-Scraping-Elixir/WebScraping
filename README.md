@@ -60,6 +60,6 @@ Digite sua palavra de busca: insertYourTopicHere
 
 ## Alternatives:
 - [Floki Alternatives](https://elixir.libhunt.com/floki-alternatives):  
-	**[Meeseeks](meeseeks)** - Meeseeks is a library for scraping and parsing web pages which is an alternative to Floki.
+	**[Meeseeks]([meeseeks](https://github.com/mischov/meeseeks))** - Meeseeks is a library for scraping and parsing web pages which is an alternative to Floki.
 - [HTTPoison Alternatives](https://elixir.libhunt.com/httpoison-alternatives):  
 	**[Crawly](https://github.com/elixir-crawly/crawly)** - Crawly is an application framework for crawling web pages and extracting structured data which can be used for a wide range of useful applications, like data mining, information processing or historical archival.
