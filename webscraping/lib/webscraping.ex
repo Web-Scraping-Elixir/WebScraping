@@ -1,9 +1,15 @@
 defmodule Webscraping do
   use Crawly.Spider
 
+  def clear_output_file do
+    File.write("./output/saida.txt", "", [:truncate])
+  end
+
   def main do
     IO.puts("Digite sua palavra de busca: ")
     busca = IO.gets("") |> String.trim()
+
+    clear_output_file()
 
     task_g1 = Task.async(fn -> get_g1(busca) end)
     task_cnn_brasil = Task.async(fn -> get_cnn_brasil(busca) end)
@@ -48,6 +54,17 @@ defmodule Webscraping do
       {title, href, time, description}
     end)
     |> Enum.each(fn {title, href, time, description} ->
+
+      info =
+        "Fonte: G1\n" <>
+        "Title: #{title}\n" <>
+        "Inicio: #{description}\n" <>
+        "Link: https:#{href}\n" <>
+        "Tempo da publicacao: #{time}\n" <>
+        "------------------------------------------------------------------------------------------------------------------------\n\n"
+
+      File.write("./output/saida.txt", info, [:append])
+
       IO.puts("Title: #{title}")
       IO.puts("Inicio: #{description}")
       IO.puts("Link: https:#{href}")
@@ -83,6 +100,16 @@ defmodule Webscraping do
       {title, href, date}
     end)
     |> Enum.each(fn {title, href, date} ->
+
+      info =
+        "Fonte: CNN Brasil\n" <>
+        "Title: #{title}\n" <>
+        "Link: #{href}\n" <>
+        "Post info: #{date}\n" <>
+        "------------------------------------------------------------------------------------------------------------------------\n\n"
+
+      File.write("./output/saida.txt", info, [:append])
+
       IO.puts("Title: #{title}")
       IO.puts("Link: #{href}")
       IO.puts("Post info: #{date}")
@@ -125,6 +152,19 @@ defmodule Webscraping do
       {title, autor, href, date, article}
     end)
     |> Enum.each(fn {title, autor, href, date, article} ->
+
+      info =
+        "Fonte: Bloom\n" <>
+        "Title: #{title}\n" <>
+        "Autor: #{autor}\n" <>
+        "Link: #{href}\n" <>
+        "Post info: #{date}\n" <>
+        "Article: #{article}\n\n" <>
+        "------------------------------------------------------------------------------------------------------------------------\n\n"
+
+      File.write("../output/saida.txt", info, [:append])
+
+
       IO.puts("Title: #{title}")
       IO.puts("Autor: #{autor}")
       IO.puts("Link: #{href}")
