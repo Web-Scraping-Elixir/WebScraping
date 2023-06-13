@@ -1,6 +1,13 @@
 defmodule Webscraping do
 
+  def clear_output_file do
+    File.write("./output/saida.txt", "", [:truncate])
+  end
+
   def main do
+
+    clear_output_file() # Limpa o arquivo de saida
+
     IO.puts("Digite sua palavra de busca: ")
     busca = IO.gets("") |> String.trim()
 
@@ -60,6 +67,15 @@ defmodule Webscraping do
           |> Floki.find("a.summary__a759320e4a")
           |> Floki.text()
 
+        info =
+          "Fonte: Bloom\n" <>
+          "Title: #{title}\n" <>
+          "Autor: #{autor}\n" <>
+          "Link: #{href}\n" <>
+          "Post info: #{date}\n" <>
+          "Article: #{article}\n\n" <>
+          "------------------------------------------------------------------------------------------------------------------------\n\n"
+
         IO.puts("                         Fonte: Bloom                           ")
         IO.puts("Title: #{title}")
         IO.puts("Autor: #{autor}")
@@ -70,6 +86,9 @@ defmodule Webscraping do
         IO.puts(
           "------------------------------------------------------------------------------------------------------------------------"
         )
+
+        File.write("./output/saida.txt", info, [:append])
+
         recursion_bloom(tail)
     end
   end
@@ -80,7 +99,7 @@ defmodule Webscraping do
       {:ok, %HTTPoison.Response{body: body}} ->
         content =
           body
-          |> Floki.find("div.storyItem__aaf871c1c5")
+          |> Floki.find("div.storyItem__aaf871c1c5") # pega o conteudo da div que contém as informações que queremos
           recursion_bloom(content)
     end
   end
@@ -113,6 +132,14 @@ defmodule Webscraping do
           |> Floki.find("p.widget--info__description")
           |> Floki.text()
 
+          info =
+            "Fonte: G1\n" <>
+            "Title: #{title}\n" <>
+            "Inicio: #{description}\n" <>
+            "Link: https:#{href}\n" <>
+            "Tempo da publicacao: #{time}\n" <>
+            "------------------------------------------------------------------------------------------------------------------------\n\n"
+
         IO.puts("                         Fonte: G1                            ")
         IO.puts("Title: #{title}")
         IO.puts("Inicio: #{description}")
@@ -122,6 +149,9 @@ defmodule Webscraping do
         IO.puts(
           "------------------------------------------------------------------------------------------------------------------------"
         )
+
+        File.write("./output/saida.txt", info, [:append]) # escreve no arquivo as informações
+
         recursion_g1(tail)
     end
   end
@@ -153,6 +183,14 @@ defmodule Webscraping do
         |> Floki.find("span.home__title__date")
         |> Floki.text()
 
+
+        info =
+          "Fonte: CNN Brasil\n" <>
+          "Title: #{title}\n" <>
+          "Link: #{link}\n" <>
+          "Post info: #{date}\n" <>
+          "------------------------------------------------------------------------------------------------------------------------\n\n"
+
         IO.puts("                         Fonte: CNN Brasil                            ")
         IO.puts("Title: #{title}")
         IO.puts("Link: #{link}")
@@ -161,6 +199,9 @@ defmodule Webscraping do
         IO.puts(
           "------------------------------------------------------------------------------------------------------------------------"
         )
+
+        File.write("./output/saida.txt", info, [:append]) # escreve no arquivo as informações
+
         recursion_cnn(tail)
     end
   end
