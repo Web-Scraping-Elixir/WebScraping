@@ -12,12 +12,9 @@ defmodule Webscraping do
     clear_output_file()
     {search_term, search_term_bloom} = count_words(busca)
 
-
     task_g1 = Task.async(fn -> get_g1(search_term) end)
     task_cnn_brasil = Task.async(fn -> get_cnn_brasil(search_term) end)
     task_bloom = Task.async(fn -> get_bloom(search_term_bloom) end)
-
-    # HTMLGenerator.generate_html()
 
     Task.await(task_g1)
     Task.await(task_cnn_brasil)
@@ -39,7 +36,6 @@ defmodule Webscraping do
     bloom = String.replace(input, " ", "%20")
     {cnn_g1, bloom}
   end
-
 
   def get_g1(busca) do
     IO.puts("Iniciando busca G1")
@@ -182,7 +178,6 @@ defmodule Webscraping do
         "------------------------------------------------------------------------------------------------------------------------\n\n"
 
       File.write("./output/saida.txt", info, [:append])
-
 
       IO.puts("Title: #{title}")
       IO.puts("Autor: #{autor}")
