@@ -53,6 +53,7 @@ Digite sua palavra de busca: insertYourTopicHere
 - `Floki.find` - Floki.find(html, selector) - Returns the first element in the html that matches the given selector.
 - `Floki.text` - Floki.text(html) - Returns the text content of the given html.
 - `Floki.attribute` - Floki.attribute(html, attribute) - Returns the value of the given attribute in the html.
+- `Crawly.fetch` - Crawly.fetch(url) - Fetch ther request for a specified URL.
 
 ## External Libraries:
 - [HTTPoison](https://hexdocs.pm/httpoison/HTTPoison.html) - HTTPoison is an HTTP client for Elixir, which supports the HTTP protocol for requests and responses.
