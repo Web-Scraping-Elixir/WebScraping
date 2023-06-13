@@ -181,7 +181,7 @@ defmodule Webscraping do
         "Article: #{article}\n\n" <>
         "------------------------------------------------------------------------------------------------------------------------\n\n"
 
-      File.write("../output/saida.txt", info, [:append])
+      File.write("./output/saida.txt", info, [:append])
 
 
       IO.puts("Title: #{title}")
