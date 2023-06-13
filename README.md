@@ -33,8 +33,18 @@ After that, the program will ask you to enter a topic and then it will print the
 Digite sua palavra de busca: insertYourTopicHere
 ```
 
+## Elixir Great Features:
+- **Functional Programming:** Elixir is a functional programming language, which means that it focuses on the evaluation of expressions rather than execution of commands. In other words, it is a declarative language, which means that it focuses on what to solve rather than how to solve it.
+- **Imutability:** Elixir is immutable, which means that once a variable is assigned a value, it cannot be changed. This is a great feature because it makes the code more predictable and easier to debug.
+- **High-order functions:** Elixir supports high-order functions, which means that functions can be passed as arguments to other functions and functions can return other functions as results.
+- **Pure functions:** Elixir functions are pure, which means that they do not have side effects. This is a great feature because it makes the code more predictable and easier to debug.
+- **Concurrency:** Elixir supports concurrency, which means that it can run multiple processes at the same time. This is a great feature because it makes the code more efficient and easier to debug.
+- **Object-Oriented Programming:** Elixir supports object-oriented programming, which means that it can use objects to represent data and methods to manipulate that data. This is a great feature because it makes the code more reusable and easier to debug.
+- **Easy Syntax:** Elixir has a very easy syntax, which means that it is easy to learn and use. This is a great feature because it makes the code more readable and easier to debug. For example, private methods are defined using the `defp` keyword, which makes it easy to identify them.
+
+
 ## Functions:
-- `ÌO.puts` - IO.puts(text) - Prints the given text to the console.
+- `IO.puts` - IO.puts(text) - Prints the given text to the console.
 - `ÌO.gets` - IO.gets() - Reads a line from the console.
 - `Enum.map/2` - Enum.map(collection, fun) - Returns a new list with fun applied to each entry in the collection.
 - `Task.async` - Task.async(fun) - Starts a new task that will invoke fun and return its result as a Task struct immediately.
@@ -44,6 +54,12 @@ Digite sua palavra de busca: insertYourTopicHere
 - `Floki.text` - Floki.text(html) - Returns the text content of the given html.
 - `Floki.attribute` - Floki.attribute(html, attribute) - Returns the value of the given attribute in the html.
 
-## Libraries used:
+## External Libraries:
 - [HTTPoison](https://hexdocs.pm/httpoison/HTTPoison.html) - HTTPoison is an HTTP client for Elixir, which supports the HTTP protocol for requests and responses.
 - [Floki](https://github.com/philss/floki) - Floki is a simple HTML parser that enables search for nodes using CSS selectors.
+
+## Alternatives:
+- [Floki Alternatives](https://elixir.libhunt.com/floki-alternatives):  
+	**[Meeseeks](meeseeks)** - Meeseeks is a library for scraping and parsing web pages which is an alternative to Floki.
+- [HTTPoison Alternatives](https://elixir.libhunt.com/httpoison-alternatives):  
+	**[Crawly](https://github.com/elixir-crawly/crawly)** - Crawly is an application framework for crawling web pages and extracting structured data which can be used for a wide range of useful applications, like data mining, information processing or historical archival.
