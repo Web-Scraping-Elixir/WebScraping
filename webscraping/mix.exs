@@ -22,6 +22,7 @@ defmodule Webscraping.MixProject do
   defp deps do
     [
       {:httpoison, "~> 1.4"},
+      {:crawly, "~> 0.15.0"},
       {:floki, "~> 0.20.0"}
     ]
   end
