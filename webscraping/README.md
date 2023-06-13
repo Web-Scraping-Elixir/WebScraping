@@ -22,10 +22,15 @@ mix deps.get
 ```
 
 ## How to run:
-To run the project, make sure you did the installation steps and then run the following commands:
+Unfortunately, due to the fact the elixir has it's own interactive shell, it's not to automate the execution of the project using Makefile.
+So, with that in mind, to run the project, make sure you did the installation steps and then run the following commands:
 ```elixir  
 iex -S mix  
 Webscraping.main  
+```
+After that, the program will ask you to enter a topic and then it will print the news of the three websites related to the topic you entered.
+```
+Digite sua palavra de busca: insertYourTopicHere
 ```
 
 ## Functions:
