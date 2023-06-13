@@ -27,7 +27,6 @@ defmodule Webscraping do
     task_cnn_brasil = Task.async(fn -> get_cnn_brasil(search_term) end)
     task_bloom = Task.async(fn -> get_bloom(search_term_bloom) end)
 
-
     Task.await(task_g1)
     Task.await(task_cnn_brasil)
     Task.await(task_bloom)
@@ -82,7 +81,7 @@ defmodule Webscraping do
               |> Floki.find("p.widget--info__description")
               |> Floki.text()
 
-            # armazena as informações na variavel info
+            # armazena as informações
             info =
               "Fonte: G1\n" <>
               "Title: #{title}\n" <>
@@ -91,7 +90,7 @@ defmodule Webscraping do
               "Tempo da publicacao: #{time}\n" <>
               "------------------------------------------------------------------------------------------------------------------------\n\n"
 
-            File.write("./output/saida.txt", info, [:append]) # escreve no arquivo as informações da variavel info
+            File.write("./output/saida.txt", info, [:append]) # escreve no arquivo as informações
 
             IO.puts("                         Fonte: G1                            ")
             IO.puts("Title: #{title}")
@@ -105,19 +104,6 @@ defmodule Webscraping do
 
             # {title, href, time, description}
           end)
-
-        # Enum.each(content, fn {title, href, time, description} ->
-        #   IO.puts("                         Fonte: G1                            ")
-        #   IO.puts("Title: #{title}")
-        #   IO.puts("Inicio: #{description}")
-        #   IO.puts("Link: https:#{href}")
-        #   IO.puts("Tempo da publicacao: #{time}")
-        #   IO.puts("")
-        #   IO.puts(
-        #     "------------------------------------------------------------------------------------------------------------------------"
-        #   )
-        # end)
-        # content
     end
   end
 
@@ -152,7 +138,7 @@ defmodule Webscraping do
               "Post info: #{date}\n" <>
               "------------------------------------------------------------------------------------------------------------------------\n\n"
 
-            File.write("./output/saida.txt", info, [:append]) # escreve no arquivo as informações
+            File.write("./output/saida.txt", info, [:append]) # escre'v'e no arquivo as informações
 
             IO.puts("                         Fonte: CNN Brasil                            ")
             IO.puts("Title: #{title}")
@@ -164,18 +150,6 @@ defmodule Webscraping do
               )
             # {title, href, date}
           end)
-
-        # Enum.each(content, fn {title, href, date} ->
-        #   IO.puts("                         Fonte: CNN Brasil                            ")
-        #   IO.puts("Title: #{title}")
-        #   IO.puts("Link: #{href}")
-        #   IO.puts("Post info: #{date}")
-        #   IO.puts("")
-        #   IO.puts(
-        #     "------------------------------------------------------------------------------------------------------------------------"
-        #   )
-        # end)
-        # content
     end
   end
 
@@ -237,22 +211,6 @@ defmodule Webscraping do
                 )
             # {title, autor, href, date, article}
           end)
-
-
-
-        # Enum.each(content, fn {title, autor, href, date, article} ->
-        #   IO.puts("                         Fonte: Bloom                            ")
-        #   IO.puts("Title: #{title}")
-        #   IO.puts("Autor: #{autor}")
-        #   IO.puts("Link: #{href}")
-        #   IO.puts("Post info: #{date}")
-        #   IO.puts("Article: #{article}")
-        #   IO.puts("")
-        #   IO.puts(
-        #     "------------------------------------------------------------------------------------------------------------------------"
-        #   )
-        # end)
-        # content
     end
   end
 end
