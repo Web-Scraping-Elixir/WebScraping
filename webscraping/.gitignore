@@ -24,3 +24,9 @@ webscraping-*.tar
 
 # Temporary files, for example, from tests.
 /tmp/
+
+/output
+/Output
+/webscraping/Output
+/webscraping/output
+
