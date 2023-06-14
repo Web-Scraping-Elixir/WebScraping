@@ -12,13 +12,13 @@ defmodule Webscraping do
     clear_output_file()
     {search_term, search_term_bloom} = count_words(busca)
 
-    task_g1 = Task.async(fn -> get_g1(search_term) end)
-    task_cnn_brasil = Task.async(fn -> get_cnn_brasil(search_term) end)
-    task_bloom = Task.async(fn -> get_bloom(search_term_bloom) end)
+    task_g1 = Task.async(fn -> get_g1(search_term) end) # create async task to get g1
+    task_cnn_brasil = Task.async(fn -> get_cnn_brasil(search_term) end) # create async task to get cnn brasil
+    task_bloom = Task.async(fn -> get_bloom(search_term_bloom) end) # create async task to get bloomberg
 
-    Task.await(task_g1)
-    Task.await(task_cnn_brasil)
-    Task.await(task_bloom)
+    Task.await(task_g1) # wait for async task 'task_g1' to finish
+    Task.await(task_cnn_brasil) # wait for async task 'task_cnn_brasil' to finish
+    Task.await(task_bloom)  # wait for async task 'task_bloom' to finish
   end
 
   def count_words(input) do
