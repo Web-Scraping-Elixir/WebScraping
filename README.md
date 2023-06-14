@@ -10,16 +10,6 @@ The project was developed using the Elixir language and its main features are:
 - [x] HTTP requests.
 - [x] HTML parsing.
 
-## Parallelism using Tasks:
-Parallelism is a programming technique that involves the simultaneous execution of multiple tasks with the aim of improving the performance and efficiency of a program. Instead of executing tasks sequentially, parallelism allows multiple tasks to be executed in parallel, leveraging available resources such as processors or threads to perform processing more quickly. In functional programming, parallelism can be naturally applied due to the characteristics of the language. Functional programming emphasizes data immutability and the absence of side effects, which means that functions have no hidden dependencies and can be executed independently of each other. This property makes it easier to identify parts of the code that can be executed in parallel, as there are no concerns about race conditions or unexpected changes to shared data. Pure functions in functional languages ensure that the result of a function depends only on its arguments, which facilitates dividing the work into smaller and independent tasks. There are several approaches to leverage parallelism in functional languages:
-
-- **Concurrent programming:** It is possible to create independent threads or processes to execute parallel tasks. Each thread or process executes a function in parallel, and the results are combined later.
-- **Operations on collections:** Many functional languages provide high-level operations for working with data collections, such as mapping, filtering, and reduction. These operations can be executed in parallel, processing different elements of the collection simultaneously.
-- **Asynchronous computation:** In modern functional languages like Elixir or Haskell, there are advanced mechanisms for working with asynchronous and distributed computation. This allows parts of the code to be executed independently and asynchronously, making the most of the available resources.
-
-The parallelism was implemented using the `Task` module, which allows us to create tasks that can be executed in parallel. The `Task` module has two functions: `Task.async` and `Task.await`. The `Task.async` function creates a task that will execute the given function in parallel. The `Task.await` function waits for the result of the given task and returns it. In the implementation of the Web Scraping, this concept is implemnted in the function main, the `Task.async` function is used to create tasks that will execute the functions that get the news of the websites (G1, CNN Brasil and Bloomberg) in parallel, that is to say that each function will be executed in an independent process, once that the execution has started, the code awaits for the end of execution of each function.
-Therefore, the parallelism allows that the search of the news in the websites is done in simultaneous, which makes the code more efficient.
-
 ## Installation
 In order to install Elixir on your machine, follow the official documentation [here](https://elixir-lang.org/install.html).
 On Unix-based systems with `apt-get` package manager, you can simply run the following command:
@@ -51,6 +41,41 @@ Digite sua palavra de busca: insertYourTopicHere
 - **Concurrency:** Elixir supports concurrency, which means that it can run multiple processes at the same time. This is a great feature because it makes the code more efficient and easier to debug.
 - **Object-Oriented Programming:** Elixir supports object-oriented programming, which means that it can use objects to represent data and methods to manipulate that data. This is a great feature because it makes the code more reusable and easier to debug.
 - **Easy Syntax:** Elixir has a very easy syntax, which means that it is easy to learn and use. This is a great feature because it makes the code more readable and easier to debug. For example, private methods are defined using the `defp` keyword, which makes it easy to identify them.
+
+### Parallelism using Tasks:
+Parallelism is a programming technique that involves the simultaneous execution of multiple tasks with the aim of improving the performance and efficiency of a program. Instead of executing tasks sequentially, parallelism allows multiple tasks to be executed in parallel, leveraging available resources such as processors or threads to perform processing more quickly. In functional programming, parallelism can be naturally applied due to the characteristics of the language. Functional programming emphasizes data immutability and the absence of side effects, which means that functions have no hidden dependencies and can be executed independently of each other. This property makes it easier to identify parts of the code that can be executed in parallel, as there are no concerns about race conditions or unexpected changes to shared data. Pure functions in functional languages ensure that the result of a function depends only on its arguments, which facilitates dividing the work into smaller and independent tasks. There are several approaches to leverage parallelism in functional languages:
+
+- **Concurrent programming:** It is possible to create independent threads or processes to execute parallel tasks. Each thread or process executes a function in parallel, and the results are combined later.
+- **Operations on collections:** Many functional languages provide high-level operations for working with data collections, such as mapping, filtering, and reduction. These operations can be executed in parallel, processing different elements of the collection simultaneously.
+- **Asynchronous computation:** In modern functional languages like Elixir or Haskell, there are advanced mechanisms for working with asynchronous and distributed computation. This allows parts of the code to be executed independently and asynchronously, making the most of the available resources.
+
+The parallelism was implemented using the `Task` module, which allows us to create tasks that can be executed in parallel. The `Task` module has two functions: `Task.async` and `Task.await`. The `Task.async` function creates a task that will execute the given function in parallel. The `Task.await` function waits for the result of the given task and returns it. In the implementation of the Web Scraping, this concept is implemnted in the function main, the `Task.async` function is used to create tasks that will execute the functions that get the news of the websites (G1, CNN Brasil and Bloomberg) in parallel, that is to say that each function will be executed in an independent process, once that the execution has started, the code awaits for the end of execution of each function.
+Therefore, the parallelism allows that the search of the news in the websites is done in simultaneous, which makes the code more efficient.  
+We used the `Task` module because it is a built-in module of Elixir, which means that it is part of the standard library of the language, so it is not necessary to install any external library to use it and it's very easy to use. One another way to use it, could be in a `Enum.map` function, which would be used to create a list of tasks and then use the `Task.await` function to wait for the results of the tasks, just like the following example:
+```elixir
+defmodule ParallelModule do
+	def run_in_parallel() do
+		tasks = Enum.map(1..10, fn number ->
+		Task.async(fn -> output_task_number(number) end)
+		end)
+
+		results = Enum.map(tasks, fn task ->
+		Task.await(task)
+		end)
+
+		Enum.each(results, fn result ->
+		IO.puts("Task result: #{result}")
+		end)
+	end
+
+	defp output_task_number(task_number) do
+		:timer.sleep(1000)
+		IO.puts("Task #{task_number} completed")
+	end
+end
+
+ParallelModule.run_in_parallel()
+```
 
 
 ## Functions:
