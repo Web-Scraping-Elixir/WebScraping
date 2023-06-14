@@ -4,11 +4,13 @@ This project was  develop to learn the functional programming languages and its 
 - [CNN Brasil](https://www.cnnbrasil.com.br/)
 - [Bloom](https://www.bloomberg.com/)  
   
-The project was developed using the Elixir language and its main features are:
+The project was developed using the Elixir language and the main features of this project are:
 - [x] Functional programming.
 - [x] Parallelism using Tasks.
 - [x] HTTP requests.
 - [x] HTML parsing.
+
+Keep in mind that there is a section named `Elixir Great Features` that explains the main features of the Elixir language and how they were used in the project and `Parallelism using Tasks` that explains how the parallelism was implemented in the project and what could be another way to implement it.
 
 ## Installation
 In order to install Elixir on your machine, follow the official documentation [here](https://elixir-lang.org/install.html).
