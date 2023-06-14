@@ -10,6 +10,10 @@ The project was developed using the Elixir language and its main features are:
 - [x] HTTP requests.
 - [x] HTML parsing.
 
+## Parallelism using Tasks:
+The parallelism was implemented using the `Task` module, which allows us to create tasks that can be executed in parallel. The `Task` module has two functions: `Task.async` and `Task.await`. The `Task.async` function creates a task that will execute the given function in parallel. The `Task.await` function waits for the result of the given task and returns it. In the implementation of the Web Scraping, this concept is implemnted in the function main, the `Task.async` function is used to create tasks that will execute the functions that get the news of the websites (G1, CNN Brasil and Bloomberg) in parallel, that is to say that each function will be executed in an independent process, once that the execution has started, the code awaits for the end of execution of each function.
+Therefore, the parallelism allows that the search of the news in the websites is done in simultaneous, which makes the code more efficient.
+
 ## Installation
 In order to install Elixir on your machine, follow the official documentation [here](https://elixir-lang.org/install.html).
 On Unix-based systems with `apt-get` package manager, you can simply run the following command:
