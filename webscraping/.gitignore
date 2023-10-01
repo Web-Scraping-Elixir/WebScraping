@@ -29,3 +29,5 @@ dets_simple_storage
 
 /output
 /webscraping/output
+
+.DS_Store
